@@ -17,7 +17,8 @@ mkHome = do
       $ DOM.div
           { children:
               [ DOM.h1_ [ DOM.text "Functional Ear Trainer!" ]
-              , DOM.p_ [ DOM.text "Try clicking that button!" ]
+              , DOM.h3_ [ DOM.text "Try clicking that button!" ]
+              , DOM.h4_ [ DOM.text $ "You clicked the button " <> show counter <> " times" ]
               , DOM.button
                   { onClick:
                       capture_ do
