@@ -1,6 +1,13 @@
-module PureEar.Page.Home where
+module PureEar.Page.Home
+  ( HomeProps
+  , mkHome
+  ) where
 
 import Prelude
+
+import Data.Map (size)
+import Lumi.Components.Button (button, primary)
+import Lumi.Components.Size (Size(..))
 import React.Basic.DOM as DOM
 import React.Basic.DOM.Events (capture_)
 import React.Basic.Hooks (Component, component, useState, (/\))
@@ -19,14 +26,13 @@ mkHome = do
               [ DOM.h1_ [ DOM.text "Functional Ear Trainer!" ]
               , DOM.h3_ [ DOM.text "Try clicking that button!" ]
               , DOM.h4_ [ DOM.text $ "You clicked the button " <> show counter <> " times" ]
-              , DOM.button
-                  { onClick:
+              , button
+                  primary
+                    { title = "Clicks: " <> show counter
+                    , size = ExtraLarge
+                    , onPress =
                       capture_ do
                         setCounter (_ + 1)
-                  , children:
-                      [ DOM.text "Clicks: "
-                      , DOM.text (show counter)
-                      ]
-                  }
+                    }
               ]
           }
