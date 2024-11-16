@@ -1,4 +1,7 @@
-use crate::components::counter_btn::Button;
+use crate::components::{
+    counter_btn::Button,
+    quiz_button::{QuizAnswer, QuizButton},
+};
 use leptos::*;
 
 /// Default Home Page
@@ -44,6 +47,11 @@ pub fn Home() -> impl IntoView {
                 <div class="buttons">
                     <Button/>
                     <Button increment=5/>
+                </div>
+                <div>
+                    <QuizButton name="I".into() answer=RwSignal::default()/>
+                    <QuizButton name="II".into() answer=RwSignal::new(QuizAnswer::Right)/>
+                    <QuizButton name="III".into() answer=RwSignal::new(QuizAnswer::Wrong)/>
                 </div>
 
             </div>
