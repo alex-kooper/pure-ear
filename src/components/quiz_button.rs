@@ -2,6 +2,7 @@ use leptos::*;
 use thaw::*;
 
 #[derive(Default, Clone, Copy)]
+#[allow(dead_code)]
 pub enum QuizAnswer {
     #[default]
     None,

@@ -29,6 +29,15 @@ impl fmt::Display for ScaleDegree {
     }
 }
 
+impl ScaleDegree {
+    pub fn major_scale_degrees() -> impl Iterator<Item = ScaleDegree> {
+        use ScaleDegree::*;
+        static DEGREES: [ScaleDegree; 7] = [D1, D2, D3, D4, D5, D6, D7];
+
+        DEGREES.into_iter()
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
