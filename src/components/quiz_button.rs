@@ -10,7 +10,11 @@ pub enum QuizAnswer {
 }
 
 #[component]
-pub fn QuizButton(name: String, answer: RwSignal<QuizAnswer>) -> impl IntoView {
+pub fn QuizButton<F: Fn() + 'static>(
+    name: String,
+    answer: RwSignal<QuizAnswer>,
+    on_click: F,
+) -> impl IntoView {
     use QuizAnswer::*;
 
     let color = Signal::derive(move || match answer() {
@@ -19,8 +23,10 @@ pub fn QuizButton(name: String, answer: RwSignal<QuizAnswer>) -> impl IntoView {
         Right => ButtonColor::Success,
     });
 
+    let on_click = Callback::new(move |_| on_click());
+
     view! {
-        <Button color>
+        <Button color on_click>
             {name}
         </Button>
     }
