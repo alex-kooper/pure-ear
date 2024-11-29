@@ -26,7 +26,7 @@ pub fn QuizButton<F: Fn() + 'static>(
     let on_click = Callback::new(move |_| on_click());
 
     view! {
-        <Button color on_click>
+        <Button style="width:4em" color on_click>
             {name}
         </Button>
     }

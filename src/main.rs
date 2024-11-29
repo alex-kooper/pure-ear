@@ -1,5 +1,6 @@
 use leptos::*;
 use pure_ear::App;
+use thaw::{GlobalStyle, ThemeProvider};
 
 fn main() {
     // set up logging
@@ -8,7 +9,10 @@ fn main() {
 
     mount_to_body(|| {
         view! {
-            <App />
+            <ThemeProvider>
+                <GlobalStyle />
+                <App />
+            </ThemeProvider>
         }
     })
 }
