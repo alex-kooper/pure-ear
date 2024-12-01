@@ -42,7 +42,7 @@ pub fn Home() -> impl IntoView {
                 </Space>
 
                 <Space align=SpaceAlign::Center justify=SpaceJustify::Center>
-                    <QuizQuestion/>
+                    <QuizQuestion />
                 </Space>
             </Space>
         </ErrorBoundary>
