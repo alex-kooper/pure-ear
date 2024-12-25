@@ -1,4 +1,4 @@
-use crate::components::quiz_question::QuizQuestion;
+use crate::components::quiz_item_ctl::QuizItemCtl;
 use leptos::*;
 use thaw::{Space, SpaceAlign, SpaceJustify};
 
@@ -42,7 +42,7 @@ pub fn Home() -> impl IntoView {
                 </Space>
 
                 <Space align=SpaceAlign::Center justify=SpaceJustify::Center>
-                    <QuizQuestion />
+                    <QuizItemCtl />
                 </Space>
             </Space>
         </ErrorBoundary>

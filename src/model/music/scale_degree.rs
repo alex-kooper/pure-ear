@@ -1,7 +1,7 @@
 use std::fmt;
 
 #[allow(unused)]
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 pub enum ScaleDegree {
     D1,
     Db2,

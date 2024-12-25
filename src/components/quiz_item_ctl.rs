@@ -6,7 +6,7 @@ use leptos::*;
 use thaw::*;
 
 #[component]
-pub fn QuizQuestion() -> impl IntoView {
+pub fn QuizItemCtl() -> impl IntoView {
     view! {
         <Space vertical=true>
             <Space align=SpaceAlign::Center justify=SpaceJustify::Center>
