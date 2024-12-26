@@ -15,6 +15,11 @@ impl QuizItem {
         }
     }
 
+    fn set_question(&mut self, question: ScaleDegree) {
+        self.question = question;
+        self.answers.clear();
+    }
+
     fn answer_with(&mut self, answer: ScaleDegree) {
         self.answers.push(answer)
     }
@@ -27,7 +32,7 @@ impl QuizItem {
         self.has_answer(self.question)
     }
 
-    fn is_correct(&self) -> bool {
+    fn is_success(&self) -> bool {
         self.answers.first() == Some(&self.question)
     }
 }
