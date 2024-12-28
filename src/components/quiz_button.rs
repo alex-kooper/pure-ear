@@ -13,12 +13,12 @@ pub enum QuizButtonState {
 #[component]
 pub fn QuizButton<F: Fn() + 'static>(
     name: String,
-    answer: Signal<QuizButtonState>,
+    state: Signal<QuizButtonState>,
     on_click: F,
 ) -> impl IntoView {
     use QuizButtonState::*;
 
-    let color = Signal::derive(move || match answer() {
+    let color = Signal::derive(move || match state() {
         Unselected => ButtonColor::Primary,
         Incorrect => ButtonColor::Error,
         Correct => ButtonColor::Success,

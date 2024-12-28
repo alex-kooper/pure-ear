@@ -15,7 +15,7 @@ pub fn QuizItemCtl(quiz_item: RwSignal<QuizItem>) -> impl IntoView {
             <div style="display:inline-flex; align-items:center; justify-content: center; gap: 0.3em">
                 {ScaleDegree::major_scale_degrees()
                     .map(|degree| {
-                        let answer = Signal::derive(move || {
+                        let button_state: Signal<QuizButtonState> = Signal::derive(move || {
                             quiz_item
                                 .with(|quiz_item| {
                                     if quiz_item.has_answer(degree) {
@@ -38,7 +38,7 @@ pub fn QuizItemCtl(quiz_item: RwSignal<QuizItem>) -> impl IntoView {
 
                         view! {
                             <div>
-                                <QuizButton name=format!("{}", degree) answer on_click />
+                                <QuizButton name=format!("{}", degree) state=button_state on_click />
                             </div>
                         }
                     })
