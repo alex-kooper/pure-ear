@@ -25,7 +25,7 @@ impl QuizItem {
     }
 
     fn has_answer(&self, answer: ScaleDegree) -> bool {
-        self.answers.iter().find(|&&d| d == answer).is_some()
+        self.answers.iter().any(|&d| d == answer)
     }
 
     fn is_done(&self) -> bool {
