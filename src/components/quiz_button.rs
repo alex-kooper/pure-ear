@@ -1,13 +1,14 @@
 use leptos::*;
 use thaw::*;
 
-#[derive(Default, Clone, Copy)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
 #[allow(dead_code)]
 pub enum QuizButtonState {
     #[default]
     Unselected,
+    Disabled,
     Incorrect,
-    Correct
+    Correct,
 }
 
 #[component]
@@ -16,18 +17,18 @@ pub fn QuizButton<F: Fn() + 'static>(
     state: Signal<QuizButtonState>,
     on_click: F,
 ) -> impl IntoView {
-    use QuizButtonState::*;
-
     let color = Signal::derive(move || match state() {
-        Unselected => ButtonColor::Primary,
-        Incorrect => ButtonColor::Error,
-        Correct => ButtonColor::Success,
+        QuizButtonState::Unselected => ButtonColor::Primary,
+        QuizButtonState::Disabled => ButtonColor::Primary,
+        QuizButtonState::Incorrect => ButtonColor::Error,
+        QuizButtonState::Correct => ButtonColor::Success,
     });
 
+    let disabled = Signal::derive(move || state() == QuizButtonState::Disabled);
     let on_click = Callback::new(move |_| on_click());
 
     view! {
-        <Button style="width:4em" color on_click>
+        <Button style="width:4em" color on_click disabled>
             {name}
         </Button>
     }

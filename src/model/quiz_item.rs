@@ -1,6 +1,5 @@
 use super::music::scale_degree::ScaleDegree;
 
-#[allow(unused)]
 #[derive(Clone)]
 pub struct QuizItem {
     question: ScaleDegree,
@@ -26,7 +25,9 @@ impl QuizItem {
     }
 
     pub fn answer_with(&mut self, answer: ScaleDegree) {
-        self.answers.push(answer)
+        if !self.answers.contains(&answer) {
+            self.answers.push(answer)
+        }
     }
 
     pub fn has_answer(&self, answer: ScaleDegree) -> bool {
