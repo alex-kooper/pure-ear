@@ -1,2 +1,2 @@
 pub mod music;
-mod quiz_item;
+pub mod quiz_item;

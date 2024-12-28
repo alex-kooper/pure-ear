@@ -3,25 +3,25 @@ use thaw::*;
 
 #[derive(Default, Clone, Copy)]
 #[allow(dead_code)]
-pub enum QuizAnswer {
+pub enum QuizButtonState {
     #[default]
-    None,
-    Wrong,
-    Right,
+    Unselected,
+    Incorrect,
+    Correct
 }
 
 #[component]
 pub fn QuizButton<F: Fn() + 'static>(
     name: String,
-    answer: RwSignal<QuizAnswer>,
+    answer: Signal<QuizButtonState>,
     on_click: F,
 ) -> impl IntoView {
-    use QuizAnswer::*;
+    use QuizButtonState::*;
 
     let color = Signal::derive(move || match answer() {
-        None => ButtonColor::Primary,
-        Wrong => ButtonColor::Error,
-        Right => ButtonColor::Success,
+        Unselected => ButtonColor::Primary,
+        Incorrect => ButtonColor::Error,
+        Correct => ButtonColor::Success,
     });
 
     let on_click = Callback::new(move |_| on_click());

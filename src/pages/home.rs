@@ -1,4 +1,7 @@
-use crate::components::quiz_item_ctl::QuizItemCtl;
+use crate::{
+    components::quiz_item_ctl::QuizItemCtl,
+    model::{music::scale_degree::ScaleDegree, quiz_item::QuizItem},
+};
 use leptos::*;
 use thaw::{Space, SpaceAlign, SpaceJustify};
 
@@ -42,7 +45,7 @@ pub fn Home() -> impl IntoView {
                 </Space>
 
                 <Space align=SpaceAlign::Center justify=SpaceJustify::Center>
-                    <QuizItemCtl />
+                    <QuizItemCtl quiz_item=RwSignal::new(QuizItem::new(ScaleDegree::D3)) />
                 </Space>
             </Space>
         </ErrorBoundary>
