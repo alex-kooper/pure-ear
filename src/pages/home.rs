@@ -2,8 +2,8 @@ use crate::{
     components::quiz_item_ctl::QuizItemCtl,
     model::{music::scale_degree::ScaleDegree, quiz_item::QuizItem},
 };
-use leptos::*;
-use thaw::{Space, SpaceAlign, SpaceJustify};
+use leptos::prelude::*;
+use thaw::*;
 
 /// Default Home Page
 #[component]
@@ -28,8 +28,8 @@ pub fn Home() -> impl IntoView {
             }
         }>
 
-            <Space vertical=true>
-                <Space align=SpaceAlign::Center justify=SpaceJustify::Center>
+            <Flex vertical=true>
+                <Flex align=FlexAlign::Center justify=FlexJustify::Center>
                     <picture>
                         <source
                             srcset="https://raw.githubusercontent.com/leptos-rs/leptos/main/docs/logos/Leptos_logo_pref_dark_RGB.svg"
@@ -42,12 +42,12 @@ pub fn Home() -> impl IntoView {
                             width="400"
                         />
                     </picture>
-                </Space>
+                </Flex>
 
-                <Space align=SpaceAlign::Center justify=SpaceJustify::Center>
+                <Flex align=FlexAlign::Center justify=FlexJustify::Center>
                     <QuizItemCtl quiz_item=RwSignal::new(QuizItem::new(ScaleDegree::D3)) />
-                </Space>
-            </Space>
+                </Flex>
+            </Flex>
         </ErrorBoundary>
     }
 }

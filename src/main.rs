@@ -1,6 +1,6 @@
-use leptos::*;
+use leptos::prelude::*;
 use pure_ear::App;
-use thaw::{GlobalStyle, ThemeProvider};
+use thaw::ConfigProvider;
 
 fn main() {
     // set up logging
@@ -9,10 +9,9 @@ fn main() {
 
     mount_to_body(|| {
         view! {
-            <ThemeProvider>
-                <GlobalStyle />
+            <ConfigProvider>
                 <App />
-            </ThemeProvider>
+            </ConfigProvider>
         }
     })
 }
