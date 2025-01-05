@@ -9,7 +9,7 @@ fn main() {
 
     mount_to_body(|| {
         view! {
-            <ConfigProvider>
+            <ConfigProvider style:line-height="unset">
                 <App />
             </ConfigProvider>
         }

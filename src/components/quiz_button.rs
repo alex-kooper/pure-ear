@@ -21,8 +21,8 @@ pub fn QuizButton<F: Fn() + Send + Sync + 'static>(
     let color = move || match state() {
         QuizButtonState::Unselected => "",
         QuizButtonState::Disabled => "var(--colorBrandBackground)",
-        QuizButtonState::Incorrect => "red",
-        QuizButtonState::Correct => "green",
+        QuizButtonState::Incorrect => "var(--colorPaletteRedBackground3)",
+        QuizButtonState::Correct => "var(--colorPaletteGreenBackground3)",
     };
 
     let disabled = Signal::derive(move || state() == QuizButtonState::Disabled);
