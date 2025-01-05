@@ -2,7 +2,7 @@ use crate::{
     components::quiz_button::{QuizButton, QuizButtonState},
     model::{music::scale_degree::ScaleDegree, quiz_item::QuizItem},
 };
-use leptos::*;
+use leptos::prelude::*;
 use thaw::*;
 
 #[component]
@@ -34,10 +34,10 @@ pub fn QuizItemCtl(quiz_item: RwSignal<QuizItem>) -> impl IntoView {
     };
 
     view! {
-        <Space vertical=true>
-            <Space align=SpaceAlign::Center justify=SpaceJustify::Center>
+        <Flex vertical=true>
+            <Flex align=FlexAlign::Center justify=FlexJustify::Center>
                 <div style="font-size: 2.7rem; font-weight: 500">Choices</div>
-            </Space>
+            </Flex>
             <div style="display:inline-flex; align-items:center; justify-content: center; gap: 0.3em">
                 {ScaleDegree::major_scale_degrees()
                     .map(|degree| {
@@ -51,6 +51,6 @@ pub fn QuizItemCtl(quiz_item: RwSignal<QuizItem>) -> impl IntoView {
                     })
                     .collect_view()}
             </div>
-        </Space>
+        </Flex>
     }
 }
