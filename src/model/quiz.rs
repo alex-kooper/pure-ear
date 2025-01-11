@@ -30,6 +30,7 @@ impl Quiz {
     }
 
     fn add_solved(&mut self, item: QuizItem) {
+        assert!(item.is_solved());
         self.solved_items.push(item);
     }
 

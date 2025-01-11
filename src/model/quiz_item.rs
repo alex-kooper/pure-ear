@@ -34,7 +34,7 @@ impl QuizItem {
         self.answers.iter().any(|&d| d == answer)
     }
 
-    pub fn is_done(&self) -> bool {
+    pub fn is_solved(&self) -> bool {
         self.has_answer(self.question)
     }
 

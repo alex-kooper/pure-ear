@@ -16,7 +16,7 @@ pub fn QuizItemCtl(quiz_item: RwSignal<QuizItem>) -> impl IntoView {
                     } else {
                         QuizButtonState::Incorrect
                     }
-                } else if quiz_item.is_done() {
+                } else if quiz_item.is_solved() {
                     QuizButtonState::Disabled
                 } else {
                     QuizButtonState::Unselected
