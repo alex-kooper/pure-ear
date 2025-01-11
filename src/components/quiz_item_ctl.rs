@@ -39,13 +39,13 @@ pub fn QuizItemCtl(quiz_item: RwSignal<QuizItem>) -> impl IntoView {
                 <div style="font-size: 2.7rem; font-weight: 500">Choices</div>
             </Flex>
             <div style="display:inline-flex; align-items:center; justify-content: center; gap: 0.3em">
-                {ScaleDegree::major_scale_degrees()
+                {ScaleDegree::major_scale_degrees().iter()
                     .map(|degree| {
                         view! {
                             <QuizButton
                                 name=format!("{}", degree)
-                                state=button_state(degree)
-                                on_click=on_click(degree)
+                                state=button_state(*degree)
+                                on_click=on_click(*degree)
                             />
                         }
                     })
