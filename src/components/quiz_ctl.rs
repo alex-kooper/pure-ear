@@ -10,12 +10,15 @@ pub fn QuizCtl() -> impl IntoView {
 
     let next_disabled = Signal::derive(move || !quiz_item().is_solved());
 
-    let on_next = move |_| {
-        quiz_item.set(quiz.write().generate_item());
-    };
+    let on_next = move |_| quiz_item.set(quiz.write().generate_item());
 
     view! {
         <Flex vertical=true gap=FlexGap::Large>
+            <Flex align=FlexAlign::Center justify=FlexJustify::Center>
+                <Caption1Strong style="font-size: 3em; line-height: unset; margin-bottom: 1em">
+                    "Scale Degree Quiz"
+                </Caption1Strong>
+            </Flex>
             <Flex align=FlexAlign::Center justify=FlexJustify::Center>
                 <QuizItemCtl quiz_item />
             </Flex>
