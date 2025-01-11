@@ -4,7 +4,6 @@ use crate::model::quiz_item::QuizItem;
 use rand::rngs::StdRng;
 use rand::seq::SliceRandom;
 use rand::SeedableRng;
-
 pub struct Quiz {
     std_rng: StdRng,
     is_completed: bool,
@@ -13,7 +12,7 @@ pub struct Quiz {
 
 #[allow(unused)]
 impl Quiz {
-    pub fn generate_quiz_item(&mut self) -> QuizItem {
+    pub fn generate_item(&mut self) -> QuizItem {
         QuizItem::new(
             *ScaleDegree::major_scale_degrees()
                 .choose(&mut self.std_rng)
