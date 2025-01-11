@@ -36,9 +36,7 @@ pub fn QuizItemCtl(quiz_item: RwSignal<QuizItem>) -> impl IntoView {
     view! {
         <Flex vertical=true>
             <Flex align=FlexAlign::Center justify=FlexJustify::Center>
-                <Caption1Strong style="font-size: 2em; line-height: unset">
-                    Choices
-                </Caption1Strong>
+                <Caption1 style="font-size: 2.5em; line-height: unset">Choices</Caption1>
             </Flex>
             <div style="display:inline-flex; align-items:center; justify-content: center; gap: 0.3em">
                 {ScaleDegree::major_scale_degrees()
