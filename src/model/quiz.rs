@@ -1,29 +1,29 @@
 use super::music::scale_degree::ScaleDegree;
 use crate::model::quiz_item::QuizItem;
 
-use rand::rngs::ThreadRng;
+use rand::rngs::StdRng;
 use rand::seq::SliceRandom;
-use rand::thread_rng;
+use rand::SeedableRng;
 
-struct Quiz {
-    thread_rng: ThreadRng,
+pub struct Quiz {
+    std_rng: StdRng,
     is_completed: bool,
     solved_items: Vec<QuizItem>,
 }
 
 #[allow(unused)]
 impl Quiz {
-    fn generate_quiz_item(&mut self) -> QuizItem {
+    pub fn generate_quiz_item(&mut self) -> QuizItem {
         QuizItem::new(
             *ScaleDegree::major_scale_degrees()
-                .choose(&mut self.thread_rng)
+                .choose(&mut self.std_rng)
                 .expect("Major scale degrees are empty"),
         )
     }
 
-    fn new() -> Quiz {
+    pub fn new() -> Quiz {
         Quiz {
-            thread_rng: thread_rng(),
+            std_rng: StdRng::from_entropy(),
             is_completed: false,
             solved_items: Vec::new(),
         }
