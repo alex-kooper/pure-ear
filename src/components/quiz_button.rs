@@ -1,5 +1,6 @@
 use leptos::prelude::*;
 use thaw::*;
+use thaw_utils::BoxCallback;
 
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub enum QuizButtonState {
@@ -11,10 +12,10 @@ pub enum QuizButtonState {
 }
 
 #[component]
-pub fn QuizButton<F: Fn() + Send + Sync + 'static>(
+pub fn QuizButton(
     name: String,
     state: Signal<QuizButtonState>,
-    on_click: F,
+    #[prop(into)] on_click: BoxCallback,
 ) -> impl IntoView {
     let on_click = move |_| on_click();
 

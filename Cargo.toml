@@ -14,7 +14,8 @@ leptos_router = { version = "0.7.3", features = ["nightly"] }
 console_log = "1"
 log = "0.4.22"
 console_error_panic_hook = "0.1"
-thaw = { version = "0.4.0", features = ["csr", "nightly"] }
+thaw = { version = "0.4.1", features = ["csr", "nightly"] }
+thaw_utils = { version = "0.1.1", features = ["csr", "nightly"] }
 
 # utils
 # strum = { version = "0.25", features = ["derive", "strum_macros"] }

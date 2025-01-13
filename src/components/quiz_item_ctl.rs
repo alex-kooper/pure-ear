@@ -4,9 +4,13 @@ use crate::{
 };
 use leptos::prelude::*;
 use thaw::*;
+use thaw_utils::ArcOneCallback;
 
 #[component]
-pub fn QuizItemCtl(quiz_item: RwSignal<QuizItem>) -> impl IntoView {
+pub fn QuizItemCtl(
+    quiz_item: RwSignal<QuizItem>,
+    #[prop(into)] on_complete: ArcOneCallback<QuizItem>,
+) -> impl IntoView {
     let button_state = move |degree| {
         Signal::derive(move || {
             quiz_item.with(|quiz_item| {
@@ -26,10 +30,16 @@ pub fn QuizItemCtl(quiz_item: RwSignal<QuizItem>) -> impl IntoView {
     };
 
     let on_click = move |degree| {
+        let on_complete = on_complete.clone();
+
         move || {
-            quiz_item.update(|quiz_item| {
-                quiz_item.answer_with(degree);
-            })
+            quiz_item.write().answer_with(degree);
+
+            quiz_item.with(|quiz_item| {
+                if quiz_item.is_solved() {
+                    on_complete(quiz_item.clone());
+                }
+            });
         }
     };
 

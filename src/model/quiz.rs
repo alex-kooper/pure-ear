@@ -28,7 +28,7 @@ impl Quiz {
         }
     }
 
-    fn add_solved(&mut self, item: QuizItem) {
+    pub fn add_solved(&mut self, item: QuizItem) {
         assert!(item.is_solved());
         self.solved_items.push(item);
     }
@@ -41,18 +41,18 @@ impl Quiz {
         self.is_completed = true;
     }
 
-    fn solved(&self) -> usize {
+    pub fn solved(&self) -> usize {
         self.solved_items.len()
     }
 
-    fn correct(&self) -> usize {
+    pub fn correct(&self) -> usize {
         self.solved_items
             .iter()
             .filter(|item| item.is_success())
             .count()
     }
 
-    fn incorrect(&self) -> usize {
+    pub fn incorrect(&self) -> usize {
         self.solved_items
             .iter()
             .filter(|item| !item.is_success())
