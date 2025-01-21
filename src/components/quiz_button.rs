@@ -17,7 +17,11 @@ pub fn QuizButton(
     state: Signal<QuizButtonState>,
     #[prop(into)] on_click: BoxCallback,
 ) -> impl IntoView {
-    let on_click = move |_| on_click();
+    let on_click = move |_| {
+        if state() == QuizButtonState::Unselected {
+            on_click()
+        }
+    };
 
     let color = move || match state() {
         QuizButtonState::Unselected => "",
