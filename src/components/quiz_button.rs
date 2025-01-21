@@ -40,7 +40,7 @@ pub fn QuizButton(
         <Button
             style:cursor=cursor
             style:background-color=color
-            style:min-width="4em"
+            style:min-width="3.5em"
             appearance=ButtonAppearance::Primary
             on_click
             disabled

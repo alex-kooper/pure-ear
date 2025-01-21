@@ -1,6 +1,5 @@
 use crate::components::quiz_ctl::QuizCtl;
 use leptos::prelude::*;
-use thaw::*;
 
 /// Default Home Page
 #[component]
@@ -24,11 +23,7 @@ pub fn Home() -> impl IntoView {
                 </ul>
             }
         }>
-            <Flex vertical=true>
-                <Flex align=FlexAlign::Center justify=FlexJustify::Center>
-                    <QuizCtl />
-                </Flex>
-            </Flex>
+            <QuizCtl />
         </ErrorBoundary>
     }
 }

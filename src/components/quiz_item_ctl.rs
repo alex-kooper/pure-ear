@@ -44,11 +44,14 @@ pub fn QuizItemCtl(
     };
 
     view! {
-        <Flex vertical=true>
-            <Flex align=FlexAlign::Center justify=FlexJustify::Center>
-                <Caption1 style="font-size: 2.5em; line-height: unset">Choices</Caption1>
-            </Flex>
-            <div style="display:inline-flex; align-items:center; justify-content: center; gap: 0.3em">
+        <Flex vertical=true align=FlexAlign::Center>
+            <Text style="font-size: var(--fontSizeBase800); line-height: line-height: var(--lineHeightBase800)">
+                Choices
+            </Text>
+
+            <Flex gap=FlexGap::Size(
+                4,
+            )>
                 {ScaleDegree::major_scale_degrees()
                     .iter()
                     .map(|degree| {
@@ -61,7 +64,7 @@ pub fn QuizItemCtl(
                         }
                     })
                     .collect_view()}
-            </div>
+            </Flex>
         </Flex>
     }
 }

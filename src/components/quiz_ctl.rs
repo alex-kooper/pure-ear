@@ -4,6 +4,23 @@ use leptos::prelude::*;
 use thaw::*;
 
 #[component]
+pub fn QuizProgress(current_item: RwSignal<u16>, total_items: u16) -> impl IntoView {
+    let percent = move || current_item() * 100 / total_items;
+    let text = move || format!("{} of {} ({:.02}%)", current_item(), total_items, percent());
+
+    view! {
+        <Flex vertical=true align=FlexAlign::Center gap=FlexGap::Small style="width: 100%">
+            <Text>{text}</Text>
+            <ProgressBar
+                value=RwSignal::new(0.5)
+                color=ProgressBarColor::Success
+                style:height="7px"
+            />
+        </Flex>
+    }
+}
+
+#[component]
 pub fn QuizCtl() -> impl IntoView {
     let quiz = RwSignal::new(Quiz::new());
     let quiz_item = RwSignal::new(quiz.write().generate_item());
@@ -13,35 +30,38 @@ pub fn QuizCtl() -> impl IntoView {
     let on_complete = move |quiz_item| quiz.write().add_solved(quiz_item);
 
     view! {
-        <Flex vertical=true gap=FlexGap::Large>
-            <Flex align=FlexAlign::Center justify=FlexJustify::Center>
-                <Caption1Strong style="font-size: 3em; line-height: unset; margin-bottom: 1em">
+        <Flex justify=FlexJustify::Center>
+            <Flex vertical=true align=FlexAlign::Center gap=FlexGap::Size(20)>
+                <Text
+                    tag=TextTag::H1
+                    style="font-size: var(--fontSizeBase900); font-weight: var(--fontWeightSemibold); line-height: var(--lineHeightBase900)"
+                >
                     "Scale Degree Quiz"
-                </Caption1Strong>
-            </Flex>
-            <Flex align=FlexAlign::Center justify=FlexJustify::Center>
+                </Text>
+
+                <QuizProgress current_item=RwSignal::new(5) total_items=10 />
+
                 <Text>
                     {move || quiz.read().correct()} " of " {move || quiz.read().solved()} " correct"
                 </Text>
-            </Flex>
-            <Flex align=FlexAlign::Center justify=FlexJustify::Center>
+
                 <QuizItemCtl quiz_item on_complete />
-            </Flex>
-            <Flex align=FlexAlign::Center justify=FlexJustify::Center style:margin-top="3em">
-                <Divider />
-            </Flex>
-            <Flex align=FlexAlign::Center justify=FlexJustify::Center>
-                <Button
-                    size=ButtonSize::Large
-                    appearance=ButtonAppearance::Primary
-                    disabled=next_disabled
-                    on_click=on_next
-                >
-                    Next
-                </Button>
-                <Button size=ButtonSize::Large appearance=ButtonAppearance::Primary>
-                    End Quiz
-                </Button>
+
+                <Divider style:margin-top="2em" />
+
+                <Flex>
+                    <Button
+                        size=ButtonSize::Large
+                        appearance=ButtonAppearance::Primary
+                        disabled=next_disabled
+                        on_click=on_next
+                    >
+                        Next
+                    </Button>
+                    <Button size=ButtonSize::Large appearance=ButtonAppearance::Primary>
+                        End Quiz
+                    </Button>
+                </Flex>
             </Flex>
         </Flex>
     }
