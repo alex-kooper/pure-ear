@@ -8,6 +8,7 @@ pub struct Quiz {
     std_rng: StdRng,
     is_completed: bool,
     solved_items: Vec<QuizItem>,
+    total_items: usize,
 }
 
 #[allow(unused)]
@@ -20,11 +21,12 @@ impl Quiz {
         )
     }
 
-    pub fn new() -> Quiz {
+    pub fn new(total_items: usize) -> Quiz {
         Quiz {
             std_rng: StdRng::from_entropy(),
             is_completed: false,
             solved_items: Vec::new(),
+            total_items,
         }
     }
 
@@ -43,6 +45,10 @@ impl Quiz {
 
     pub fn solved(&self) -> usize {
         self.solved_items.len()
+    }
+
+    pub fn total_items(&self) -> usize {
+        self.total_items
     }
 
     pub fn correct(&self) -> usize {

@@ -4,7 +4,7 @@ use leptos::prelude::*;
 use thaw::*;
 
 #[component]
-pub fn QuizProgress(current_item: RwSignal<u16>, total_items: u16) -> impl IntoView {
+pub fn QuizProgress(current_item: Signal<usize>, total_items: usize) -> impl IntoView {
     let percent = move || current_item() * 100 / total_items;
     let text = move || format!("{} of {} ({:.02}%)", current_item(), total_items, percent());
 
@@ -12,8 +12,9 @@ pub fn QuizProgress(current_item: RwSignal<u16>, total_items: u16) -> impl IntoV
         <Flex vertical=true align=FlexAlign::Center gap=FlexGap::Small style="width: 100%">
             <Text>{text}</Text>
             <ProgressBar
-                value=RwSignal::new(0.5)
+                value=Signal::derive(move || current_item() as f64)
                 color=ProgressBarColor::Success
+                max=Signal::derive(move || total_items as f64)
                 style:height="7px"
             />
         </Flex>
@@ -22,10 +23,15 @@ pub fn QuizProgress(current_item: RwSignal<u16>, total_items: u16) -> impl IntoV
 
 #[component]
 pub fn QuizCtl() -> impl IntoView {
-    let quiz = RwSignal::new(Quiz::new());
+    let quiz = RwSignal::new(Quiz::new(10));
     let quiz_item = RwSignal::new(quiz.write().generate_item());
 
-    let next_disabled = Signal::derive(move || !quiz_item.read().is_solved());
+    let total_items = quiz.read().total_items();
+    let solved = Signal::derive(move || quiz.read().solved());
+
+    let next_disabled =
+        Signal::derive(move || !quiz_item.read().is_solved() || quiz.read().solved() >= total_items);
+
     let on_next = move |_| quiz_item.set(quiz.write().generate_item());
     let on_complete = move |quiz_item| quiz.write().add_solved(quiz_item);
 
@@ -39,7 +45,7 @@ pub fn QuizCtl() -> impl IntoView {
                     "Scale Degree Quiz"
                 </Text>
 
-                <QuizProgress current_item=RwSignal::new(5) total_items=10 />
+                <QuizProgress current_item=solved total_items=quiz.read().total_items() />
 
                 <Text>
                     {move || quiz.read().correct()} " of " {move || quiz.read().solved()} " correct"
