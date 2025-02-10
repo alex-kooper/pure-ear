@@ -2,8 +2,9 @@ use super::music::scale_degree::ScaleDegree;
 use crate::model::quiz_item::QuizItem;
 
 use rand::rngs::StdRng;
-use rand::seq::SliceRandom;
+use rand::seq::IndexedRandom;
 use rand::SeedableRng;
+
 pub struct Quiz {
     std_rng: StdRng,
     is_completed: bool,
@@ -23,7 +24,7 @@ impl Quiz {
 
     pub fn new(total_items: usize) -> Quiz {
         Quiz {
-            std_rng: StdRng::from_entropy(),
+            std_rng: StdRng::from_os_rng(),
             is_completed: false,
             solved_items: Vec::new(),
             total_items,
