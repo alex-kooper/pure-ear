@@ -7,15 +7,15 @@ authors = ["Alex Kuprienko <akuprienko@williamhill.us>"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-getrandom = { version = "0.3.1", features = ["wasm_js"] }
+getrandom = { version = "0.3.2", features = ["wasm_js"] }
 rand = "0.9.0"
-leptos = { version = "0.7.7", features = ["csr", "nightly"] }
-leptos_meta = { version = "0.7.7" }
-leptos_router = { version = "0.7.7", features = ["nightly"] }
+leptos = { version = "0.7.8", features = ["csr", "nightly"] }
+leptos_meta = { version = "0.7.8" }
+leptos_router = { version = "0.7.8", features = ["nightly"] }
 console_log = "1"
-log = "0.4.25"
+log = "0.4.27"
 console_error_panic_hook = "0.1"
-thaw = { version = "0.4.3", features = ["csr", "nightly"] }
+thaw = { version = "0.4.5", features = ["csr", "nightly"] }
 thaw_utils = { version = "0.1.1", features = ["csr", "nightly"] }
 
 # utils
